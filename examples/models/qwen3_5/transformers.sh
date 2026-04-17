@@ -7,7 +7,7 @@ VIDEO_MAX_TOKEN_NUM=128 \
 FPS_MAX_FRAMES=12 \
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
 swift sft \
-    --model Qwen/Qwen3.5-35B-A3B \
+    --model /mnt/tidalfs-bdsz01/dataset/llm_ckpt/qwen3.5/Qwen3.5-35B-A3B \
     --tuner_type lora \
     --dataset 'swift/self-cognition#1000' \
     --load_from_cache_file true \
