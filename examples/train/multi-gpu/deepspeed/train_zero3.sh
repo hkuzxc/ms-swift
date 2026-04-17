@@ -1,10 +1,10 @@
-# 16GiB * 2
-nproc_per_node=2
+# 8卡 H20 141GB，跑 Qwen3.5-397B-A17B，LoRA + DeepSpeed Zero-3
+nproc_per_node=8
 
-CUDA_VISIBLE_DEVICES=0,1 \
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 \
 NPROC_PER_NODE=$nproc_per_node \
 swift sft \
-    --model Qwen/Qwen2.5-7B-Instruct \
+    --model /mnt/tidalfs-bdsz01/dataset/llm_ckpt/qwen3.5/Qwen3.5-397B-A17B \
     --tuner_type lora \
     --dataset 'swift/self-cognition#1000' \
     --torch_dtype bfloat16 \
@@ -15,7 +15,8 @@ swift sft \
     --lora_rank 8 \
     --lora_alpha 32 \
     --target_modules all-linear \
-    --gradient_accumulation_steps $(expr 16 / $nproc_per_node) \
+    --gradient_accumulation_steps 16 \
+    --gradient_checkpointing true \
     --eval_steps 100 \
     --save_steps 100 \
     --save_total_limit 2 \
@@ -25,6 +26,4 @@ swift sft \
     --system 'You are a helpful assistant.' \
     --warmup_ratio 0.05 \
     --dataloader_num_workers 4 \
-    --model_author swift \
-    --model_name swift-robot \
     --deepspeed zero3
