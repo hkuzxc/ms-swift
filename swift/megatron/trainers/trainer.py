@@ -54,6 +54,7 @@ class MegatronTrainer(BaseMegatronTrainer):
                   loss_scale: Optional[torch.Tensor] = None,
                   channels: Optional[List[str]] = None,
                   packed_seq_params=None):
+        import pdb; pdb.set_trace()  # 断点10: loss_func开始
         args = self.args
 
         losses = output_tensor.float()
@@ -113,6 +114,7 @@ class MegatronTrainer(BaseMegatronTrainer):
         return new_metrics
 
     def forward_step(self, data_iterator, model):
+        import pdb; pdb.set_trace()  # 断点9: forward_step开始
         # Get the batch.
         vp_stage = model.module.module.vp_stage
         data = self.get_batch(data_iterator, vp_stage)
