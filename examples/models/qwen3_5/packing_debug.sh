@@ -1,3 +1,6 @@
+export LD_LIBRARY_PATH=/mnt/tidalfs-bdsz01/usr/xiangyi3/miniconda3/envs/swift_qwen_35/lib/python3.11/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
+export HTTP_PROXY=10.7.4.2:3128
+export HTTPS_PROXY=10.7.4.2:3128
 # Debug version: 1 card for debugging
 # Usage: bash examples/models/qwen3_5/packing_debug.sh
 
@@ -8,7 +11,7 @@ IMAGE_MAX_TOKEN_NUM=1024 \
 VIDEO_MAX_TOKEN_NUM=128 \
 FPS_MAX_FRAMES=12 \
 megatron sft \
-    --model /mnt/tidalfs-bdsz01/dataset/llm_ckpt/qwen3.5/Qwen3.5-35B-A3B \
+    --model /mnt/tidalfs-bdsz01/dataset/llm_ckpt/Qwen3.5-0.8B \
     --save_safetensors true \
     --dataset 'AI-ModelScope/LongAlpaca-12k' \
     --load_from_cache_file true \
