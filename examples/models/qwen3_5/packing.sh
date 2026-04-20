@@ -1,7 +1,7 @@
 export LD_LIBRARY_PATH=/mnt/tidalfs-bdsz01/usr/xiangyi3/miniconda3/envs/swift_qwen_35/lib/python3.11/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
 export HTTP_PROXY=10.7.4.2:3128
 export HTTPS_PROXY=10.7.4.2:3128
-export WANDB_API_KEY=800e6d72e61258a7d5508d7c2072d5576f2129eb
+
 # 8 * 80GiB
 PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True' \
 NPROC_PER_NODE=8 \
