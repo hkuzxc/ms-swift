@@ -78,7 +78,6 @@ def get_mcore_model_config(args, hf_config):
 
 
 def get_mcore_model(args, hf_config):
-    import pdb; pdb.set_trace()  # 断点11: get_mcore_model开始
     config = get_mcore_model_config(args, hf_config)
     models = _get_mcore_model(config)
 

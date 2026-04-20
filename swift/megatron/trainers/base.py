@@ -58,7 +58,6 @@ logger = get_logger()
 class BaseMegatronTrainer(ABC):
 
     def __init__(self, args, template: Template):
-        import pdb; pdb.set_trace()  # 断点4: BaseMegatronTrainer初始化开始
         # validate mcore version and patch routing_replay
         self.enable_routing_replay = args.router_replay_mode != 'disabled'
         if self.enable_routing_replay:
@@ -187,7 +186,6 @@ class BaseMegatronTrainer(ABC):
             logs[k] = v
 
     def prepare_model(self):
-        import pdb; pdb.set_trace()  # 断点5: 准备模型开始
         args = self.args
         self.unwrapped_models = get_mcore_model(args, self.template.config)
         self.config = self.unwrapped_models[0].config
@@ -583,7 +581,6 @@ class BaseMegatronTrainer(ABC):
         return train_data_iterator, val_data_iterator
 
     def train(self, train_dataset, val_dataset):
-        import pdb; pdb.set_trace()  # 断点6: 训练主循环开始
         args = self.args
         config = self.config
         state = self.state
@@ -634,8 +631,6 @@ class BaseMegatronTrainer(ABC):
         else:
             train_data_iterator, val_data_iterator = self._prepare_data_iterator(train_dataset, val_dataset)
         while state.iteration < args.train_iters:
-            if state.iteration == 0:
-                import pdb; pdb.set_trace()  # 断点7: 第一个训练step开始
             self.call_event('on_step_begin')
             maybe_finalize_async_save(args, blocking=False)
             metrics, grad_norm, update_successful = self.train_step(train_data_iterator)
@@ -848,7 +843,6 @@ class BaseMegatronTrainer(ABC):
         return data_iterator
 
     def train_step(self, train_data_iterator):
-        import pdb; pdb.set_trace()  # 断点8: train_step开始
         args = self.args
         forward_backward_func = get_forward_backward_func()
         for m in self.wrapped_models:

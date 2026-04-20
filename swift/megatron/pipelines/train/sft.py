@@ -40,7 +40,6 @@ class MegatronSft(SwiftSft):
         pass
 
     def __init__(self, args: Optional[Union[List[str], MegatronSftArguments]] = None) -> None:
-        import pdb; pdb.set_trace()  # 断点2: MegatronSft初始化开始
         self.train_msg = {}
         super(SwiftSft, self).__init__(args)
         args = self.args
@@ -65,7 +64,6 @@ class MegatronSft(SwiftSft):
         self.template.use_megatron = True
 
     def run(self):
-        import pdb; pdb.set_trace()  # 断点3: 训练run方法开始
         args = self.args
         train_dataset, val_dataset = self._prepare_dataset()
         args.init_iters(train_dataset, val_dataset)
