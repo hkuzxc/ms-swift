@@ -1,6 +1,7 @@
 export LD_LIBRARY_PATH=/mnt/tidalfs-bdsz01/usr/xiangyi3/miniconda3/envs/swift_qwen_35/lib/python3.11/site-packages/nvidia/cudnn/lib:$LD_LIBRARY_PATH
 export HTTP_PROXY=10.7.4.2:3128
 export HTTPS_PROXY=10.7.4.2:3128
+export WANDB_API_KEY=800e6d72e61258a7d5508d7c2072d5576f2129eb
 # 8 * 80GiB
 PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True' \
 NPROC_PER_NODE=8 \
@@ -51,4 +52,7 @@ megatron sft \
     --optimizer_cpu_offload true \
     --use_precision_aware_optimizer true \
     --optimizer_offload_fraction 0.64 \
-    --attention_backend flash
+    --attention_backend flash \
+    --report_to wandb \
+    --wandb_project megatron-swift \
+    --wandb_exp_name Qwen3.5-35B-A3B-packing-sft
